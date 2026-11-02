@@ -2,6 +2,8 @@
 
 An unofficial browser remake of the 1982 arcade game, with new graphics. Push blocks of ice, crush the Sno-Bees and line up the diamonds on a frozen lake under the northern lights.
 
+**▶ Play: https://wigy.github.io/pengo/**
+
 ![Crushing a Sno-Bee with a block of ice](docs/screenshots/crush.png)
 
 | | | |
@@ -10,7 +12,7 @@ An unofficial browser remake of the 1982 arcade game, with new graphics. Push bl
 
 ## Running the game
 
-Download the repository and open `index.html` in a browser. There is nothing to install or build.
+Play it [online](https://wigy.github.io/pengo/), or download the repository and open `index.html` in a browser. There is nothing to install or build.
 
 ## How to play
 
