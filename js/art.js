@@ -1215,7 +1215,10 @@
         const k = p.life / p.max;
         ctx.globalAlpha = k > 0.7 ? (1 - k) / 0.3 : 1;
         const rise = easeOutBack(clamp01(k * 2.2)) * 26;
-        this.text(p.str, p.x, p.y - rise, p.px, p.color, 'center');
+        // Crushes happen right against the walls, so keep the number on screen.
+        const half = this.textWidth(p.str, p.px) / 2 + 4;
+        const x = Math.max(half, Math.min(LOGICAL_W - half, p.x));
+        this.text(p.str, x, p.y - rise, p.px, p.color, 'center');
       }
       ctx.globalAlpha = 1;
     }
@@ -1237,9 +1240,12 @@
       }
       const left = game.remainingBees();
       const fakeBee = { state: 'idle', dir: 'down', id: 1 };
-      for (let i = 0; i < Math.min(left, 12); i++) {
+      // Later rounds have more bees: tighten the row to stay clear of the centre hint.
+      const shown = Math.min(left, 12);
+      const spacing = shown > 1 ? Math.min(26, 200 / (shown - 1)) : 26;
+      for (let i = 0; i < shown; i++) {
         ctx.save();
-        ctx.translate(LOGICAL_W - FIELD_X - 12 - i * 26, y);
+        ctx.translate(LOGICAL_W - FIELD_X - 12 - i * spacing, y);
         ctx.scale(0.48, 0.48);
         this.drawBee(ctx, 0, 0, fakeBee, 0);
         ctx.restore();
